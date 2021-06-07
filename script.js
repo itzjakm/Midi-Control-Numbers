@@ -1,3 +1,28 @@
+//Wakelock
+if ('wakeLock' in navigator) {
+  // The wake lock sentinel.
+  let wakeLock = null;
+
+  // Function that attempts to request a screen wake lock.
+  async function requestWakeLock() {
+    try {
+      wakeLock = await navigator.wakeLock.request();
+      wakeLock.addEventListener('release', () => {
+        console.log('Screen Wake Lock released:', wakeLock.released);
+      });
+      console.log('Screen Wake Lock released:', wakeLock.released);
+    } catch (err) {
+      console.error(`${err.name}, ${err.message}`);
+    }
+  }
+  requestWakeLock();
+
+  document.addEventListener('visibilitychange', () => {
+    if (wakeLock !== null && document.visibilityState === 'visible') {
+      requestWakeLock();
+    }
+  });
+}
 WebMidi.enable(function (err) {
   const lastNote = document.querySelector('.last-note');
   const lastNote2 = document.querySelector('.last2-note');
