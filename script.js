@@ -1,4 +1,5 @@
 //Wakelock
+let relaseWakeLock;
 if ('wakeLock' in navigator) {
   // The wake lock sentinel.
   let wakeLock = null;
@@ -16,7 +17,10 @@ if ('wakeLock' in navigator) {
     }
   }
   requestWakeLock();
-
+  relaseWakeLock = function () {
+    wakeLock.release();
+    wakeLock = null;
+  };
   document.addEventListener('visibilitychange', () => {
     if (wakeLock !== null && document.visibilityState === 'visible') {
       requestWakeLock();
@@ -27,11 +31,18 @@ WebMidi.enable(function (err) {
   const lastNote = document.querySelector('.last-note');
   const lastNote2 = document.querySelector('.last2-note');
   const lastNote3 = document.querySelector('.last3-note');
-  // const output = WebMidi.getOutputByName('Clavinova');
-  const input = WebMidi.getInputByName('Clavinova');
-  if (!input) return;
+  const input = !WebMidi.inputs.length
+    ? document.querySelector('.error').classList.remove('hidden') && null
+    : WebMidi.inputs.length === 1 && WebMidi.getInputByName('Clavinova')
+    ? WebMidi.getInputByName('Clavinova')
+    : WebMidi.getInputByName(prompt(WebMidi.inputs.join(',')));
+  if (!input) {
+    return relaseWakeLock();
+  }
   input.addListener('controlchange', 1, function (e) {
-    if (!(e.controller.name === 'sustenutopedal' && e.value === 127)) return;
+    if (e.controller.name === 'sustenutopedal' && e.value === 127)
+      return (document.querySelector('.number').textContent = 0);
+    if (!(e.controller.name === 'softpedal' && e.value === 127)) return;
     document.querySelector('.number').textContent++;
   });
   input.addListener('noteon', 1, e => {

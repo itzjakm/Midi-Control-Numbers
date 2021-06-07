@@ -8,11 +8,27 @@
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
     <script src="script.js"></script>
+    <style>
+      body {
+        background-color: white;
+      }
+      h1,
+      h2 {
+        color: black;
+      }
+      .error {
+        color: red;
+      }
+      .hidden {
+        display: none;
+      }
+    </style>
   </head>
   <body>
     <h1 class="number">0</h1>
     <h2 class="last-note">$</h2>
     <h2 class="last2-note">$</h2>
     <h2 class="last3-note">$</h2>
+    <h2 class="error hidden">No Midi Devices</h2>
   </body>
 </html>
