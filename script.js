@@ -1,4 +1,5 @@
 //Wakelock
+// import WebMidi from 'webmidi';
 let relaseWakeLock;
 if ('wakeLock' in navigator) {
   // The wake lock sentinel.
