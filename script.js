@@ -1,4 +1,5 @@
 //Wakelock
+// import WebMidi from 'webmidi';
 let relaseWakeLock;
 if ('wakeLock' in navigator) {
   // The wake lock sentinel.
@@ -45,10 +46,15 @@ WebMidi.enable(function (err) {
     if (!(e.controller.name === 'softpedal' && e.value === 127)) return;
     document.querySelector('.number').textContent++;
   });
+  const noteArr = [];
   input.addListener('noteon', 1, e => {
     lastNote3.innerText = lastNote2.innerText;
     lastNote2.innerText = lastNote.innerText;
     lastNote.innerText = e.note.name;
+    noteArr.push(e.note.name);
+    const arrCompare = ['Re', 'Mi'];
+    if (noteArr.slice(-arrCompare.length).every((e, i) => e === arrCompare[i]))
+      document.querySelector('.number').textContent++;
   });
   /*   input.addListener('noteon', 'all', function (e) {
    
