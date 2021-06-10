@@ -7,7 +7,7 @@
     <title>Midi Numbers</title>
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.1"></script>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
     <style>
       body {
         background-color: white;
@@ -22,13 +22,21 @@
       .hidden {
         display: none;
       }
+      span{
+        color: black;
+        padding-right: 1rem;
+        font-size: 1rem;
+      }
     </style>
   </head>
-  <body>
     <h1 class="number">0</h1>
     <h2 class="last-note">$</h2>
     <h2 class="last2-note">$</h2>
     <h2 class="last3-note">$</h2>
+    <form>
+     <span>Notes</span><input class="notes" type="text">
+     <span>Octave</span><input class="octave" type="number">
+    </form>
     <h2 class="error hidden">No Midi Devices</h2>
   </body>
 </html>
