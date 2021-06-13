@@ -13,7 +13,7 @@
         background-color: white;
       }
       h1,
-      h2 {
+      h2, form {
         color: black;
       }
       .error {
@@ -36,6 +36,10 @@
     <form>
      <span>Notes</span><input class="notes" type="text">
      <span>Octave</span><input class="octave" type="number">
+<br>
+<div class="presets">
+     <input type="radio" name="hanonPreset" value="F,E,F,E,C"> Hanon 10
+    </div>
     </form>
     <h2 class="error hidden">No Midi Devices</h2>
   </body>

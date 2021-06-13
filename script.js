@@ -44,6 +44,10 @@ WebMidi.enable(function (err) {
     if (!(e.controller.name === 'softpedal' && e.value === 127)) return;
     document.querySelector('.number').textContent++;
   });
+  document.querySelector('.presets').addEventListener('click', e => {
+    if (e.target.type !== 'radio') return;
+    notesInput.value = e.target.value;
+  });
 });
 
 //Wakelock
