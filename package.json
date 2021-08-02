@@ -18,5 +18,18 @@
   "homepage": "https://github.com/itzjakm/Midi-Control-Numbers#readme",
   "dependencies": {
     "webmidi": "^2.5.2"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.14.9",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-node": "^4.1.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "prettier": "^2.3.2"
   }
 }
